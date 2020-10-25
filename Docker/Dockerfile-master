@@ -1,4 +1,4 @@
-FROM jmeter-base-ikea:latest
+FROM jmeter-base:latest
 MAINTAINER jens.pettersson
 
 ARG JMETER_VERSION=5.3
