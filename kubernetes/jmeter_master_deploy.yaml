@@ -1,0 +1,41 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: jmeter-master
+  labels:
+    jmeter_mode: master
+    app: jmeter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      jmeter_mode: master
+  template:
+    metadata:
+      labels:
+        jmeter_mode: master
+    spec:
+      containers:
+      - name: jmmaster
+        image: jmeter-master
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: env-variables
+        command: [ "/bin/bash", "-c", "--" ]
+        args: [ "while true; do sleep 30; done;" ]
+        volumeMounts:
+        - name: loadtest
+          mountPath: /loadtest/load_test
+          subPath: "load_test"
+        - name: csv
+          mountPath: /test
+        ports:
+        - containerPort: 60000
+      volumes:
+      - name: loadtest
+        configMap:
+         name: jmeter-load-test
+      - name: csv
+        configMap:
+         name: csv-data

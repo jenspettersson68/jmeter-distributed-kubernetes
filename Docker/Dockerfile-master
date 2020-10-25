@@ -1,0 +1,6 @@
+FROM jmeter-base-ikea:latest
+MAINTAINER jens.pettersson
+
+ARG JMETER_VERSION=5.3
+	
+EXPOSE 60000
