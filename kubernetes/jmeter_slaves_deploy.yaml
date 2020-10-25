@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: jmslave
-        image: jmeter-slave
+        image: mesmeratu/jmeter-slave:latest
         imagePullPolicy: Always
         volumeMounts:
         - name: csv

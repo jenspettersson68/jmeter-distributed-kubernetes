@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: jmmaster
-        image: jmeter-master
+        image: mesmeratu/jmeter-master:latest
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
