@@ -23,7 +23,7 @@ kubectl.exe exec -ti -n $tenant $master_pod -- bash -c 'rm -f /results.jtl'
 kubectl.exe cp $1 -n $tenant $master_pod:/$1
 
 ## Echo Starting Jmeter load test
-kubectl.exe exec -ti -n $tenant $master_pod bash /loadtest/load_test $1
+kubectl.exe exec -ti -n $tenant $master_pod -- bash /loadtest/load_test $1
 #Copy report to host
 timestamp=$(date +'%Y%m%d_%H%M%S')
 kubectl.exe cp -n $tenant $master_pod:loadtest/report ./report_$timestamp
